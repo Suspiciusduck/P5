@@ -25,13 +25,13 @@ fetchProduct().then(data => {
   // Crée et ajoute un template
   container.innerHTML += `
     <div class="card d-flex flex-md-row mt-5 mb-3 mx-auto margin-top product">
-      <img class="col col-md-7 card-img-top px-0 product__img" src="${data.imageUrl}" alt="Appareil photo ${data.name}">
+      <img class="col col-md-7 card-img-top px-0 product__img" src="${data.imageUrl}" alt="Teddies ${data.name}">
       <div class="col col-md-5 card-body text-center text-md-left">
         <h1 class="h2 py-2">${data.name}</h1>
         <p class="card-text">${data.description}</p>
         <p class="btn btn-primary h4 text-center text-monospace mb-4">${formatter.format(data.price / 100)}</p><br>
         <div class="form-group m-0">
-        <select class="form-control">${data.colors.map((colors) => `<option>${colors}</option>`)}</select>
+          <select class="form-control">${data.colors.map((color) => `<option>${color}</option>`)}</select>
         </div>
         <a href="cart.html">
           <button class="btn btn-success mt-2 w-100 add-to-cart">Ajouter au panier</button>
@@ -40,12 +40,12 @@ fetchProduct().then(data => {
     </div>
   `;
 
-  // const addToCart = document.querySelector(".add-to-cart"); // Cible le bouton qui ajoute un produit au panier
+  const addToCart = document.querySelector(".add-to-cart"); // Cible le bouton qui ajoute un produit au panier
 
   // Au clic sur ce bouton
-  // addToCart.addEventListener("click", () => { 
-  //   const cartContent = JSON.parse(localStorage.getItem("cartContent")) || []; // Récupère les données du localStorage sous forme d'array, si il y en a un, ou crée un array vide
-  //   cartContent.push(id); // Ajoute un produit à l'array
-  //   localStorage.setItem("cartContent", JSON.stringify(cartContent)); // Enregistre l'array dans le localStorage sous forme de string
-  // });
+  addToCart.addEventListener("click", () => {
+    const cartContent = JSON.parse(localStorage.getItem("cartContent")) || []; // Récupère les données du localStorage sous forme d'array, si il y en a un, ou crée un array vide
+    cartContent.push(id); // Ajoute un produit à l'array
+    localStorage.setItem("cartContent", JSON.stringify(cartContent)); // Enregistre l'array dans le localStorage sous forme de string
+  });
 });
